@@ -1,0 +1,53 @@
+body {
+
+}
+
+.section1 {
+  background-image: url("../img/bg-2.jpg");
+  background-size: cover;
+  height: 100vh;
+}
+
+
+/* admin-main */
+.middle-div {
+  margin-top: 20px;
+}
+
+.panel-bg {
+  background-color: rgba(51,51,51,0.5) !important;
+  color: #fff !important;
+}
+
+.panel-bg i {
+  font-size: 70px;
+  padding-bottom: 20px;
+}
+
+.panel-bg:hover {
+  opacity: 0.9;
+}
+
+.panel-bg i:hover {
+  color: #e74c3c;
+}
+
+@media (max-width: 480px) {
+  .middle-div {
+    margin-top: 5px;
+  }
+
+  .footer {
+    display: none;
+  }
+}
+
+/* Footer */
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  overflow-y: hidden;
+}
