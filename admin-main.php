@@ -19,16 +19,16 @@
       break;
   }
 
-  //Firewall button
+  //Filter button
   $fwfilter = $_POST['fwfilter'];
   switch($fwfilter){
     case "on":
-      $stat = "on";
-      fwFilter($stat);
+      $val = "on";
+      fwFilter($val);
       break;
     case "off":
-      $stat = "off";
-      fwFilter($stat);
+      $val = "off";
+      fwFilter($val);
       break;
     default:
       break;
