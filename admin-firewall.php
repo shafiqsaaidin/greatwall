@@ -89,12 +89,12 @@
         <li><a href="admin-main.php">Home</a></li>
         <li class="active"><a href="admin-firewall.php">Firewall</a></li>
         <li><a href="admin-filter.php">Web-Filter</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="about.php">About</a></li>
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>&nbsp<?php echo $_SESSION['login_user']; ?>
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#contact">Logout</a></li>
+            <li><a href="logout.php">Logout</a></li>
           </ul>
         </li>
       </ul>
@@ -151,9 +151,37 @@
     </div>
   </div>
   <div class="col-md-8 col-md-offset-2">
-    <br><legend>Firewall Rule</legend>
+    <br><legend style="">Firewall Rule <button type="button" name="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#reset">reset all</button></legend>
     <?php echo list_port_num(); ?>
   </div>
+</div>
+
+<!-- Reset confirmation -->
+<div id="reset" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Please verify your password</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div class="input-group">
+                  <input type="password" class="form-control" placeholder="Password" name="fw_reset">
+                  <div class="input-group-btn">
+                    <button class="btn btn-success" type="submit" name="reset">Verify</button>
+                  </div>
+              </div>
+              </form>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        </div>
+        </div>
+    </div>
 </div>
 
 <!-- Modal -->
