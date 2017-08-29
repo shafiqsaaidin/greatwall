@@ -97,7 +97,13 @@
     // Function to add and delete domain in web-filter
     function filter_add($val){
       $domain = (string)$val;
-      exec('echo "address=/'.$domain.'/127.0.0.1" >> /etc/dnsmasq.conf');
+      exec('sudo echo "address=/'.$domain.'/127.0.0.1" >> /etc/dnsmasq.conf');
+      exec('sudo /etc/init.d/dnsmasq restart');
+    }
+
+    function filter_del($val){
+      $domain = (string)$val;
+      exec("sudo sed -i '/$domain/d' /etc/dnsmasq.conf");
       exec('sudo /etc/init.d/dnsmasq restart');
     }
 ?>

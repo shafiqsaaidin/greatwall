@@ -2,6 +2,11 @@
   require 'header.php';
   require 'session.php';
   require 'api.php';
+
+  if(isset($_POST['filter'])){
+    $val = htmlspecialchars($_POST['domain']);
+    filter_add($val);
+  }
 ?>
 <style>
   body {
@@ -61,9 +66,12 @@
       <div class="panel-body">
         <legend>Blocked domain</legend>
         <ul class="list-group">
-          <li class="list-group-item">google.com <button type="button" name="button" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></button></li>
-          <li class="list-group-item">facebook.com <button type="button" name="button" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></button></li>
-          <li class="list-group-item">youtube.com <button type="button" name="button" class="btn btn-danger btn-xs pull-right"><i class="fa fa-trash-o" aria-hidden="true"></i></button></li>
+          <?php
+            $list_blocked = exec('grep -w "address=" /etc/dnsmasq.conf');
+            foreach($list_blocked as $x):
+          ?>
+            <li class="list-group-item"><?php echo $x; ?></li>
+          <?php endforeach; ?>
         </ul>
       </div>
     </div>
