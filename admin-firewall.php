@@ -151,8 +151,14 @@
     </div>
   </div>
   <div class="col-md-8 col-md-offset-2">
-    <br><legend style="">Firewall Rule <button type="button" name="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#reset">reset all</button></legend>
-    <?php echo list_port_num(); ?>
+    <div class="panel panel-default panel-bg">
+      <div class="panel-heading">
+        Firewall Rule <button type="button" name="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#reset">reset all</button>
+      </div>
+      <div class="panel-body">
+        <?php echo list_port_num(); ?>
+      </div>
+    </div>
   </div>
 </div>
 
