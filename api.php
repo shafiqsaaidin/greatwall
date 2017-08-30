@@ -31,6 +31,7 @@
         exec('sudo ufw enable');
         exec('sudo ufw allow 80');
         exec('sudo ufw allow 22');
+        exec('sudo ufw allow 53');
       } elseif($stat == "off") {
         exec('sudo ufw disable');
       } else {
