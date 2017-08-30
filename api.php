@@ -21,7 +21,7 @@
     }
 
     function get_hdd_usage(){
-      $hdd = shell_exec("df -h | sed -n '4p' | awk '{print $5}'");
+      $hdd = shell_exec("df -h | sed -n '2p' | awk '{print $5}'");
       return $hdd;
     }
 
@@ -29,6 +29,8 @@
     function fwCheck($stat){
       if($stat == "on"){
         exec('sudo ufw enable');
+        exec('sudo ufw allow 80');
+        exec('sudo ufw allow 22');
       } elseif($stat == "off") {
         exec('sudo ufw disable');
       } else {
