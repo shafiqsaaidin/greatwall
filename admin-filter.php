@@ -14,7 +14,6 @@
         filter_del($val);
         break;
       default:
-        # code...
         break;
     }
   }
