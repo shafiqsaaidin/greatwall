@@ -4,8 +4,19 @@
   require 'api.php';
 
   if(isset($_POST['filter'])){
+    $action = $_POST['filter'];
     $val = htmlspecialchars($_POST['domain']);
-    filter_add($val);
+    switch ($action) {
+      case 'add':
+        filter_add($val);
+        break;
+      case 'del':
+        filter_del($val);
+        break;
+      default:
+        # code...
+        break;
+    }
   }
 ?>
 <style>
@@ -47,32 +58,31 @@
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default panel-bg">
       <div class="panel-heading">
-        Add domain to block
+        Add and Delete domain
       </div>
       <div class="panel-body">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
           <div class="form-group">
-            <div class="input-group">
-              <input type="text" name="domain" class="form-control" placeholder="facebook.com">
-              <div class="input-group-btn">
-                <button type="submit" name="filter" class="btn btn-danger">Block</button>
+            <input type="text" name="domain" class="form-control" placeholder="facebook.com">
+            <div class="btn-group btn-group-justified">
+              <div class="btn-group">
+                <button type="submit" name="filter" value="add" class="btn btn-success">Block</button>
+              </div>
+              <div class="btn-group">
+                <button type="submit" name="filter" value="del" class="btn btn-danger">Delete</button>
               </div>
             </div>
           </div>
         </form>
       </div>
     </div>
-    <div class="panel pabel-default">
+    <div class="panel pabel-default panel-bg">
       <div class="panel-body">
         <legend>Blocked domain</legend>
-        <ul class="list-group">
-          <?php
-            $list_blocked = exec('grep -w "address=" /etc/dnsmasq.conf');
-            foreach($list_blocked as $x):
-          ?>
-            <li class="list-group-item"><?php echo $x; ?></li>
-          <?php endforeach; ?>
-        </ul>
+        <?php
+          $list = shell_exec('grep -w "address=" /etc/dnsmasq.conf');
+          echo "<pre>$list</pre>";
+        ?>
       </div>
     </div>
   </div>
