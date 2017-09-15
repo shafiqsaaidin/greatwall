@@ -109,4 +109,16 @@
       exec("sudo sed -i '/$domain/d' /etc/dnsmasq.conf");
       exec('sudo /etc/init.d/dnsmasq restart');
     }
+
+    // DNSMASQ get dhcp lease client
+    $lease_file = "sudo cat /var/lib/misc/dnsmasq.leases";
+    $mac_address = "$lease_file | awk {'print $2'}";
+    $ip_address = "$lease_file | awk {'print $3'}";
+    $hostname = "$lease_file | awk {'print $4'}";
+
+    $dhclient = array(
+      'mac'=>$mac_address,
+      'ip'=>$ip_address,
+      'hostname'=>$hostname );
+
 ?>
