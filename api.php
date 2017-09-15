@@ -112,9 +112,9 @@
 
     // DNSMASQ get dhcp lease client
     $lease_file = "sudo cat /var/lib/misc/dnsmasq.leases";
-    $mac_address = "$lease_file | awk {'print $2'}";
-    $ip_address = "$lease_file | awk {'print $3'}";
-    $hostname = "$lease_file | awk {'print $4'}";
+    $mac_address = exec("$lease_file | awk {'print $2'}");
+    $ip_address = exec("$lease_file | awk {'print $3'}");
+    $hostname = exec("$lease_file | awk {'print $4'}");
 
     $dhclient = array(
       'mac'=>$mac_address,
